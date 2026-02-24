@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- RegistrationNumber: 8 digits -->
+  <xs:simpleType name="RegistrationNumberType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\d{8}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- FirstName / FamilyName max 20 -->
+  <xs:simpleType name="Name20Type">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Age 16..150 -->
+  <xs:simpleType name="AgeType">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="16"/>
+      <xs:maxInclusive value="150"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Level enum -->
+  <xs:simpleType name="LevelType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1L"/>
+      <xs:enumeration value="2L"/>
+      <xs:enumeration value="3L"/>
+      <xs:enumeration value="1M"/>
+      <xs:enumeration value="2M"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Speciality enum -->
+  <xs:simpleType name="SpecialityType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ComputerScience"/>
+      <xs:enumeration value="Physics"/>
+      <xs:enumeration value="Chemistry"/>
+      <xs:enumeration value="Mathematics"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Average 0.00..20.00 default 0.00 -->
+  <xs:simpleType name="AverageType">
+    <xs:restriction base="xs:decimal">
+      <xs:minInclusive value="0.00"/>
+      <xs:maxInclusive value="20.00"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Address parts -->
+  <xs:simpleType name="AddressNumberType">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0"/>
+      <xs:maxInclusive value="999"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="City30Type">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="30"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- PostalCode: exactly 5 digits -->
+  <xs:simpleType name="PostalCodeType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\d{5}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Root -->
+  <xs:element name="Students">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Student" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+
+              <xs:element name="FirstName" type="Name20Type"/>
+              <xs:element name="FamilyName" type="Name20Type"/>
+              <xs:element name="Age" type="AgeType"/>
+
+              <!-- Address optional -->
+              <xs:element name="Address" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Number" type="AddressNumberType"/>
+                    <xs:element name="City" type="City30Type"/>
+                    <xs:element name="PostalCode" type="PostalCodeType"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+
+              <xs:element name="Level" type="LevelType"/>
+              <xs:element name="Speciality" type="SpecialityType"/>
+
+              <!-- default value -->
+              <xs:element name="Average" type="AverageType" default="0.00"/>
+
+            </xs:sequence>
+
+            <xs:attribute name="RegistrationNumber"
+                          type="RegistrationNumberType"
+                          use="required"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

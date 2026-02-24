@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Students SYSTEM "students.dtd">
+<Students xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="students.xsd">
+
+  <Student RegistrationNumber="12345678">
+    <FirstName>souhair</FirstName>
+    <FamilyName>youmbai</FamilyName>
+    <Age>20</Age>
+    <Level>3L</Level>
+    <Speciality>ComputerScience</Speciality>
+    <Average>15.75</Average>
+
+    <Address>
+      <Number>125</Number>
+      <City>El Oued</City>
+      <PostalCode>39012</PostalCode>
+    </Address>
+  </Student>
+
+  <Student RegistrationNumber="87654321">
+    <FirstName>amani</FirstName>
+    <FamilyName>ghrissi aloui</FamilyName>
+    <Age>20</Age>
+    <Level>3M</Level>
+    <Speciality>Mathematics</Speciality>
+    <Average>17.20</Average>
+  </Student>
+
+</Students>
